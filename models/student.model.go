@@ -1,12 +1,13 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"time"
+)
 
 type Student struct {
-	gorm.Model
-	Id   int    `json:"id"`
-	Name string `json:"name"`
-	Age  int    `json:"age"`
+	Id        uint64     `json:"id" sql:"AUTO_INCREMENT" gorm:"primary_key"`
+	Name      string     `gorm:"type:varchar(255);not null"`
+	Age        int       `gorm:"type:int;not null"`
+	CreatedAt time.Time  `json:"-"`
+	UpdatedAt time.Time  `json:"-"`
 }
-
-var Students []Student
